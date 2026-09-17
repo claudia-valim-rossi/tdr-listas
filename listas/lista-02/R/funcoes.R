@@ -26,7 +26,7 @@ desenhar <- function(dados, modelo, arquivo = "saidas/dispersao.png") {
   on.exit(dev.off())
   plot(Ozone ~ Wind, data = dados, pch = 20, col = "steelblue",
        xlab = "Vento (mph)", ylab = "Ozônio (ppb)")
-  abline(modelo, col = "tomato", lwd = 2)
+  abline(modelo, col = "darkgreen", lwd = 2)
   arquivo
 }
 
