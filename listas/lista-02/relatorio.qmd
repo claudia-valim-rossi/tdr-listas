@@ -1,0 +1,33 @@
+---
+title: "Ozônio e vento em Nova York"
+author: "Claudia Valim Rossi"
+lang: pt-BR
+format:
+  html:
+    embed-resources: true
+---
+
+```{r carrega}
+#| echo: false
+targets::tar_load(c(dados, medias, modelo, figura))
+```
+
+A tabela com as médias mensais está na @tbl-medias.
+
+```{r tbl-medias}
+#| echo: false
+#| tbl-cap: "Médias mensais de ozônio e de vento."
+knitr::kable(medias)
+```
+
+A relação entre as duas variáveis, com a reta ajustada, é mostrada na @fig-dispersao.
+
+```{r fig-dispersao}
+#| echo: false
+#| fig-cap: "Ozônio contra vento, com a reta ajustada."
+knitr::include_graphics(here::here(figura))
+```
+
+O conjunto de dados tem `r nrow(dados)` observações, das quais `r nobs(modelo)` foram usadas no ajuste do modelo, que explica `r round(100 * summary(modelo)$r.squared, 1)`% da variação do ozônio.
+
+O ajuste sugere uma relação negativa entre vento e ozônio: dias com mais ventania tendem a apresentar concentrações mais baixas de ozônio, o que vai em encontro com a ideia de que o vento dispersa poluentes na atmosfera. A dispersão dos pontos ao redor da reta, no entanto, é considerável, sobretudo em velocidades de vento intermediárias — o que já era esperado dado que o vento é apenas um dos fatores que influenciam a concentração de ozônio, e o R² obtido reflete essa margem: o vento explica parte da variação observada, mas está longe de ser o único determinante. ---
