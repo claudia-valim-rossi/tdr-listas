@@ -1,5 +1,3 @@
-install.packages(c("here", "targets", "tarchetypes"))
-
 ## Lê o CSV e acrescenta o nome do mês como fator.
 ler_dados <- function(arquivo) {
   dados <- read.csv(arquivo)
@@ -32,12 +30,9 @@ desenhar <- function(dados, modelo, arquivo = "saidas/dispersao.png") {
   arquivo
 }
 
-#Roda as funções
-source("R/funcoes.R")
-dados <- ler_dados("dados/airquality.csv")
-medias <- resumir(dados)
-modelo <- modelar(dados)
-desenhar(dados, modelo)
-
-#verificar se o arquivo existe
-file.exists("saidas/dispersao.png")
+## Exporta as médias mensais para um CSV em saidas/ e devolve o caminho.
+exportar_csv <- function(medias, arquivo = "saidas/medias.csv") {
+  dir.create(dirname(arquivo), showWarnings = FALSE, recursive = TRUE)
+  write.csv(medias, arquivo, row.names = FALSE)
+  arquivo
+}
